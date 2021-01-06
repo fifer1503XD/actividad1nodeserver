@@ -7,53 +7,37 @@ http.createServer((request, response) => {
 	{	
 		case '/contacto':
 			
-        fs.readFile("./contact.html", (error, content) => {
-          if(!error){
-              response.write(content);
-              response.end();
-          }
-        });
+     readFile("./contact.html",response);
       
 		break;
     case '/nosotros':
-			
-      fs.readFile("./about.html", (error, content) => {
-        if(!error){
-            response.write(content);
-            response.end();
-        }
-      });
+      readFile("./about.html",response);
     
-     break;
+         break;
      case '/proyectos':
 			
-      fs.readFile("./proyectos.html", (error, content) => {
-        if(!error){
-            response.write(content);
-            response.end();
-        }
-      });
+      readFile("./proyectos.html",response);
     
      break;
      case '/favicon.ico':
       response.setHeader("Content-Type", "img; charset=utf-8");
-      fs.readFile("./favicon.png", (error, content) => {
-        if(!error){
-            response.write(content);
-            response.end();
-        }
-      });
-    
+      readFile("./favicon.png",response);
      break;
      
     
 		default: //En caso de no encontrar la ruta
-    response.write("<h1>404</h1>");
-    response.end();
+    readFile("./404.html",response);
 		break;
 	}
     
 }).listen(80);
 
 
- 
+ const readFile=(path, response) =>{
+  fs.readFile(path, (error, content) => {
+    if(!error){
+        response.write(content);
+        response.end();
+    }
+ })
+}
