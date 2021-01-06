@@ -25,7 +25,8 @@ http.createServer((request, response) => {
      break;
      
     
-		default: //En caso de no encontrar la ruta
+    default: //En caso de no encontrar la ruta
+    response.statusCode=404;
     readFile("./404.html",response);
 		break;
 	}
